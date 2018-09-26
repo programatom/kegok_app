@@ -1,0 +1,7 @@
+{
+  "name": "kegok",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
