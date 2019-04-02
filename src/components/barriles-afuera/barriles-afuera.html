@@ -1,0 +1,11 @@
+<br>
+<ion-item *ngFor="let barril of datosBarrilesAfuera" class = 'itemTransparent' (click) = "irAlSearch(barril.IDENTIFICATION)">
+  <ion-icon item-start [name] = 'barril.iconoName' [color] = 'barril.iconoColor' [ngClass] = "{'font-75':barril.iconoName == 'kegok-speaker','font-75':barril.iconoName == 'kegok-flash','font-7':barril.iconoName == 'kegok-checkbox'}"></ion-icon>
+  {{barril.IDENTIFICATION}} <i>en</i> <strong>{{barril.CLIENT_NAME}}</strong> <div class="posicion-days-out">
+    {{barril.DAYS_OUT}} días
+  </div>
+</ion-item>
+<ion-item class = 'itemTransparent' text-wrap>
+  <ion-icon item-start name='help'></ion-icon>
+  <i>Mostrando sólo los 15 registros más antiguos..</i>
+</ion-item>

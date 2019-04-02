@@ -1,0 +1,75 @@
+page-item-listado {
+
+  .padding-div{
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+  .backgroundColor{
+    background-color: rgba(0,0,0,0.7) !important;
+  }
+  .cancelar{
+    color:map-get($colors,'danger') !important;
+  }
+  .guardar{
+    color:map-get($colors,'light') !important;
+  }
+  .entregar{
+    color:map-get($colors,'azul-ok') !important;
+  }
+
+  .span{
+    margin-left: 4%;
+  }
+  .estadoEstaticoEntregado{
+    color:map-get($colors, 'ENTREGADO') !important;
+  }
+  .estadoEstaticoCancelado{
+    color:map-get($colors, 'CANCELADO') !important;
+  }
+  .fabricaBarril{
+    color:map-get($colors, 'FABRICAbarril') !important;
+  }
+  .stockBarril{
+    color:map-get($colors, 'STOCKbarril') !important;
+  }
+  .entregadoBarril{
+    color:map-get($colors, 'ENTREGADObarril') !important;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+  }
+
+  .boton-agregar {
+      background-color: transparent;
+      border-radius: 1vw;
+      border-color: map-get($colors,'light');
+      border-style: solid;
+      border-width: thin;
+      color: map-get($colors, 'light');
+      padding: 3vw;
+      font-size: 4.2vw;
+      text-align: center;
+      margin-left: 3%;
+      margin-right: 3%;
+  }
+  .row{
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  .paddinglinea{
+    padding-right: 4%;
+  }
+
+}

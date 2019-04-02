@@ -1,0 +1,21 @@
+entregados {
+  ion-card{
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3) !important;
+  }
+  .color-white{
+    color:white;
+  }
+
+  .col-cliente{
+    text-align: center;
+  }
+
+  .linea-divisoria {
+  width: 100%;
+  border-bottom-color: rgb(54, 162, 235) !important;
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+}
+}

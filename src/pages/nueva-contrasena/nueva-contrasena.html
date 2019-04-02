@@ -1,0 +1,45 @@
+
+<ion-header>
+
+  <ion-navbar color = "dark">
+    <ion-title>Nueva contraseña</ion-title>
+    <ion-buttons left>
+       <button ion-button>
+         <img src="assets/imgs/logo-chico.png" class = 'imagenNav'>
+       </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="splashOpaque" *ngIf="showSplash">
+    <div class="spinner1">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
+
+  <ion-item>
+      <ion-label color="light" floating>Contraseña temporal</ion-label>
+      <ion-input type="password" color = "light" [(ngModel)]="password" (keyup.enter) = "cambiarInput(inputNewPW)" #inputOldPW></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label color="light" floating>Contraseña nueva</ion-label>
+      <ion-input type="password" color="light" [(ngModel)]="newpassword" (keyup.enter) = "cambiarInput(inputNewPWConfir)" #inputNewPW></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label color="light" floating>Confirmar contraseña nueva</ion-label>
+      <ion-input type="password" color = "light" [(ngModel)]="newpassword2" (keyup.enter) = "aplicar()" #inputNewPWConfir></ion-input>
+  </ion-item>
+  <br>
+  <br><br>
+  <div text-center>
+    <button ion-button class = 'boton' clear (click) = "aplicar()">Aplicar</button>
+  </div>
+
+</ion-content>

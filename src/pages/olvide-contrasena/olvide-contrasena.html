@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar color = "dark" hideBackButton>
+    <ion-title>Recuperación</ion-title>
+    <ion-buttons left>
+           <button ion-button icon-only (click)="dismissModal()">
+               <ion-icon name="arrow-back"></ion-icon>
+           </button>
+       </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="splashOpaque" *ngIf="showSplash">
+    <div class="spinner1">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
+
+  <p class = "texto-margen" color = 'gris'>Ingrese su dirección de correo electrónico para restabelecer su contraseña</p>
+  <br>
+  <ion-item>
+      <ion-label color="light" floating>Email</ion-label>
+      <ion-input type="mail" color = "light" [(ngModel)]="email" (keyup.enter) = "enviarEmail()"></ion-input>
+  </ion-item>
+  <br>
+
+  <div text-center>
+    <button clear ion-button color= "light" (click) = "enviarEmail()">Enviar</button>
+  </div>
+</ion-content>

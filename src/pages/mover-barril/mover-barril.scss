@@ -1,0 +1,97 @@
+page-mover-barril {
+  .imagenNav{
+    height: 7.5vw !important;
+    width: auto;
+  }
+  .icono-logout{
+    font-size: 7.5vw !important;
+  }
+
+ion-content .scroll-content{
+  overflow-y: hidden;
+}
+
+
+.backgroundColor{
+  background-color: rgba(0,0,0,0.7) !important;
+}
+.btn1 {
+    background-color: #575757;
+    border-radius: 10px;
+    color: map-get($colors, 'light');
+    font-size: 5vw;
+    box-shadow:1px 1px 1px #575757;
+    height:15vw;
+}
+.btn2 {
+    background-color: #FFCB05;
+    border-radius: 10px;
+    color: white;
+    font-size: 5vw;
+    box-shadow:1px 1px 1px #FFCB05;
+    height:15vw;
+}
+.btn3 {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    color: map-get($colors, 'dark');
+    font-size: 5vw;
+    box-shadow:1px 1px 1px #FFFFFF;
+    height:15vw;
+}
+.btn1 ion-icon {
+  font-size: 9.5vw;
+  position: relative;
+  left: 3.7vw;
+  top:3.3vw;
+
+}
+
+.btn2 ion-icon {
+  position: relative;
+  font-size: 8vw;
+  left: 3.7vw;
+  top:3.3vw;
+}
+.btn3 ion-icon {
+  position: relative;
+  font-size: 10vw;
+  left: 3.7vw;
+  top:3.3vw;
+}
+
+.texto{
+  position: relative;
+  text-align: center;
+  top: -4.7vw;
+}
+.texto2{
+  position: relative;
+  text-align: center;
+  top: -7.0vw;
+}
+.texto1{
+  position: relative;
+  text-align: center;
+  top: -6.2vw;
+}
+.btn1:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+.btn2:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+.btn3:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+
+.imagenNav{
+  height: 100%;
+  width: auto;
+}
+
+
+}

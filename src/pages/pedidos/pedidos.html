@@ -1,0 +1,63 @@
+
+<ion-header>
+
+  <ion-navbar color="dark" text-center>
+
+      <ion-searchbar
+        [(ngModel)]="input"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="buscarInput($event)"
+        (ionCancel)="onCancel($event)"
+        placeholder='Buscar'
+        (keyup.enter)="buscarInput($event)">
+      </ion-searchbar>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding #content>
+
+  <div class="splash" *ngIf="showSplash">
+    <div class="spinner1">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)" [enabled] = "refreshHabilitado"
+                color = 'light'>
+     <ion-refresher-content></ion-refresher-content>
+   </ion-refresher>
+
+  <button class = 'boton'ion-button block outline (click) = 'agregarNuevoPedido("nuevoPedido","PENDIENTE")' color = 'light'> AGREGAR NUEVO PEDIDO</button>
+  <br>
+  <div *ngIf="existeSearch == false && noHayResultados == false">
+    <ion-list>
+      <button class = 'boton' *ngFor="let pedido of pedidosArray" ion-item no-lines (click) = "irItem(pedido.NUMBER,'tipoPedido',pedido.STATUS,pedido.DATE_TIME_STR,pedido.CLIENT_NAME,pedido.ID_ORDER_STR,pedido.ITEMS, pedido.COMMENTS)">
+        {{pedido.CLIENT_NAME}} Nº {{pedido.NUMBER}}
+        <ion-icon item-start name = "square" [color] = "pedido.STATUS"></ion-icon>
+      </button>
+
+    </ion-list>
+  </div>
+  <div *ngIf="existeSearch == true && noHayResultados == false">
+    <ion-list>
+      <button class = 'boton' *ngFor="let pedido of pedidosResultados" ion-item no-lines (click) = "irItem(pedido.NUMBER,'tipoPedido',pedido.STATUS,pedido.DATE_TIME_STR,pedido.CLIENT_NAME,pedido.ID_ORDER_STR,pedido.ITEMS, pedido.COMMENTS)">
+        {{pedido.CLIENT_NAME}} Nº {{pedido.NUMBER}}
+        <ion-icon item-start name = "square" [color] = "pedido.STATUS"></ion-icon>
+      </button>
+    </ion-list>
+  </div>
+  <div *ngIf="existeSearch == false && noHayResultados == false && pedidosArray.length > 0" class = 'nota'>
+  Registro de los últimos dos meses
+  </div>
+
+  <div class="containerView" *ngIf="noHayResultados">
+    <div class="centeredItemResults">
+      <ion-icon name = 'search' class= 'icono-search'></ion-icon>
+        <p>No se encontraron resultados...</p>
+    </div>
+  </div>
+
+</ion-content>

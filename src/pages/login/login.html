@@ -1,0 +1,44 @@
+<div class="splash" *ngIf="showSplash">
+  <div class="spinner1">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
+
+<ion-content padding>
+
+
+
+<img src="assets/imgs/logo-chico.png" class='slide-image'>
+
+
+
+<ion-item>
+  <ion-label color="light" floating><ion-icon item-right name="person"> </ion-icon>
+    Usuario</ion-label>
+    <ion-input type="user" color="light" (ionChange) = 'animarPWUser()' [(ngModel)]="usuario" (keyup.enter)="cambiarInput('contrasena')"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="mostrarPW" class = 'animation1'>
+    <ion-label color="light" floating><ion-icon item-right name="lock"> </ion-icon>
+      Contraseña</ion-label>
+      <ion-input type="password" color = "light" [(ngModel)]="contrasena" (ionChange) ='animarIngresar()' (keyup.enter)="hideKeyboard()" #contrasenaInput></ion-input>
+    </ion-item>
+
+  <br>
+  <br>
+  <div text-center>
+      <button *ngIf= "mostrarIngresar" class = 'boton animation1 position-ingresar' clear ion-button (click) = "ingresar()" >Ingresar</button>
+  </div>
+
+  <div class="botones-abajo">
+    <!--
+    <div text-center>
+      <button clear ion-button class = 'boton position-label-registrate'color="light" (click) = "registrar()"> Registrate</button>
+    </div>
+  -->
+    <div text-center>
+      <button clear ion-button class = 'boton position-label-contrasena'color="light" (click) = "olvideContrasena()"> Olvidé mi contraseña</button>
+    </div>
+  </div>
+</ion-content>

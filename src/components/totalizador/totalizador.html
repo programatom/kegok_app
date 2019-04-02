@@ -1,0 +1,107 @@
+<ion-card >
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class = "padding-texto">
+        <div class="numero1" #totalBarrilesNumero>
+          {{total}}
+        </div>
+        <div class="texto">
+          <small><strong>BARRILES</strong></small>
+        </div>
+
+
+      </ion-col>
+      <ion-col>
+        <ion-icon float-right name = "kegok-barrel">
+        </ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <progress-bar [progressDisplay]= "progressDisplayTotal" [progress]="loadProgressTotal" [color]="color1" [animationName]='animationTotal' [animationDuration]='animationDurTotal'></progress-bar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+
+<ion-card (click) = "irAlSearch('entregado')">
+  <ion-grid>
+    <ion-row>
+      <ion-col class = "padding-texto">
+        <div class="numero2" #totalEntregadosNumero>
+          {{entregados}}
+        </div>
+        <div class="texto">
+          <small><strong>ENTREGADOS</strong></small>
+        </div>
+
+
+      </ion-col>
+      <ion-col>
+        <ion-icon float-right name = "kegok-smile">
+        </ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+
+      <ion-col>
+        <progress-bar [progressDisplay]= "progressDisplayEntregados" [progress]="loadProgressEntregados" [color]="color2" [animationName]='animationEntregados' [animationDuration]='animationDurEntregados'></progress-bar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+
+<ion-card (click) = "irAlSearch('stock')">
+  <ion-grid>
+    <ion-row>
+      <ion-col class = "padding-texto">
+        <div class="numero3" #totalStockNumero>
+          {{stock}}
+        </div>
+
+        <div class="texto">
+          <small><strong>EN STOCK</strong></small>
+        </div>
+
+      </ion-col>
+      <ion-col>
+        <ion-icon float-right name = "kegok-deposito">
+        </ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+
+      <ion-col>
+        <progress-bar [progressDisplay]= "progressDisplayStock" [progress]="loadProgressStock" [color]="color3" [animationName]='animationStock' [animationDuration]='animationDurStock'></progress-bar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+
+<ion-card (click) = "irAlSearch('fabrica')">
+  <ion-grid>
+    <ion-row>
+      <ion-col class = "padding-texto">
+        <div class="numero4" #totalFabricaNumero>
+          {{fabrica}}
+        </div>
+
+        <div class="texto">
+          <small><strong>EN FABRICA</strong></small>
+        </div>
+
+      </ion-col>
+      <ion-col>
+        <ion-icon float-right name = "kegok-factory">
+        </ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+
+      <ion-col>
+        <progress-bar [progressDisplay]= "progressDisplayFabrica" [progress]="loadProgressFabrica" [color]="color4" [animationName]='animationFabrica' [animationDuration]='animationDurFabrica'></progress-bar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

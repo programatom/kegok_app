@@ -1,0 +1,144 @@
+<div class="splashOpaqueModal" *ngIf="showSplashScan">
+  <div class="spinner1">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
+<ion-header>
+
+  <ion-navbar color="dark" text-center>
+    <ion-buttons start *ngIf="modal">
+         <button ion-button icon-only (click)="dismissModal()">
+           <ion-icon name="arrow-back"></ion-icon>
+         </button>
+     </ion-buttons>
+
+      <ion-searchbar
+        [(ngModel)]="input"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="buscarInput($event)"
+        placeholder='Buscar'
+        (keyup.enter)="buscarInput($event)">
+      </ion-searchbar>
+      <ion-buttons end *ngIf="modal == false">
+           <button ion-button icon-only (click)="scan()">
+             <ion-icon name="qr-scanner"></ion-icon>
+           </button>
+       </ion-buttons>
+
+
+
+  </ion-navbar>
+
+
+</ion-header>
+
+
+<ion-content #content>
+  <div class="splash" *ngIf="showSplash">
+    <div class="spinner1">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
+
+
+  <ion-refresher (ionRefresh)="doRefresh($event)" [enabled] = "refreshHabilitado"
+                color = 'light'>
+     <ion-refresher-content></ion-refresher-content>
+   </ion-refresher>
+
+
+<!--
+(click) = "irItem(barril.CAPACITY_STR,barril.IDENTIFICATION,barril.STATUS,barril.STYLE_NAME, barril.CLIENT_NAME, 'producto')"
+  -->
+<div *ngIf="noHayResultados==false">
+  <ion-list>
+     <ion-item no-lines color = 'boton' *ngFor="let barril of arrayProductosScrollDisplay" class='itemTransparentTextoOscuro'>
+     <ion-grid class = 'item-borde-fabrica' *ngIf="barril.STATUS == 'FABRICA'">
+       <ion-row>
+         <ion-col>
+           <ion-row>
+             <ion-col>
+               ID <strong>{{(barril.IDENTIFICATION).substring(4)}}</strong>
+             </ion-col>
+             <ion-col>
+             </ion-col>
+             <ion-col>
+               <strong>{{barril.CAPACITY_STR}} </strong>lts.
+             </ion-col>
+           </ion-row>
+         </ion-col>
+       </ion-row>
+     </ion-grid>
+     <ion-grid class = 'item-borde-entregado' *ngIf="barril.STATUS == 'ENTREGADO'">
+       <ion-row>
+         <ion-col>
+           <ion-row>
+             <ion-col>
+                ID <strong>{{(barril.IDENTIFICATION).substring(4)}}</strong>
+             </ion-col>
+             <ion-col>
+               <strong>{{barril.STYLE_NAME}}</strong>
+             </ion-col>
+             <ion-col>
+               <strong>{{barril.CAPACITY_STR}} </strong>lts.
+             </ion-col>
+           </ion-row>
+           <ion-row>
+             <ion-col>
+               {{barril.LOTE}}
+             </ion-col>
+             <ion-col>
+               <strong>{{barril.CLIENT_NAME}}</strong>
+             </ion-col>
+             <ion-col>
+             </ion-col>
+           </ion-row>
+         </ion-col>
+       </ion-row>
+     </ion-grid>
+     <ion-grid class = 'item-borde-stock' *ngIf="barril.STATUS == 'STOCK'">
+       <ion-row>
+         <ion-col>
+           <ion-row>
+             <ion-col>
+               ID <strong>{{(barril.IDENTIFICATION).substring(4)}}</strong>
+             </ion-col>
+             <ion-col>
+               <strong>{{barril.STYLE_NAME}}</strong>
+             </ion-col>
+             <ion-col>
+               <strong>{{barril.CAPACITY_STR}} </strong>lts.
+             </ion-col>
+           </ion-row>
+           <ion-row>
+             <ion-col>
+               <strong>{{barril.LOTE}}</strong>
+             </ion-col>
+             <ion-col>
+             </ion-col>
+           </ion-row>
+         </ion-col>
+       </ion-row>
+     </ion-grid>
+     </ion-item>
+   </ion-list>
+</div>
+
+<div class="containerView" *ngIf="noHayResultados">
+  <div class="centeredItemResults">
+    <ion-icon name = 'search' class= 'icono-search'></ion-icon>
+      <p>No se encontraron resultados...</p>
+  </div>
+</div>
+
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)"
+                      [enabled] = "scrollHabilitado"
+                      >
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+
+</ion-content>

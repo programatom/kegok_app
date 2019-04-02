@@ -1,3 +1,115 @@
 page-home {
 
+  ion-segment-button{
+    display: block;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    padding: 1vw;
+    height: 10vw !important;
+  }
+  .posicion-days-out{
+    float:right;
+  }
+  .imagenNav{
+    height: 7.5vw !important;
+    width: auto;
+  }
+  .icono-logout{
+    font-size: 7.5vw !important;
+  }
+
+.texto-cliente{
+  font-size: 7vw;
+  color: #2b3643 !important;
+  float:left;
+}
+
+ion-segment-button{
+  color:map-get($colors,'light') !important;
+}
+.col-cliente{
+  text-align: center !important;
+}
+.segment-style{
+  padding-left: 2vw !important;
+  padding-right: 2vw !important;
+  padding-top: 2vw !important;
+
+}
+ion-content{
+  background-color: #2b3643 !important;
+}
+.numero1{
+  font-size:12vw !important;
+  color:rgb(82, 177, 186) !important;
+}
+.numero2{
+  font-size:12vw !important;
+  color:rgb(227, 114, 97) !important;
+}
+.numero3{
+  font-size:12vw !important;
+  color:rgb(104, 155, 204) !important;
+}
+.numero4{
+  font-size:12vw !important;
+  color:rgb(133, 121, 166) !important;
+}
+
+
+
+.texto{
+  font-size:4vw !important;
+  color:rgb(171, 180, 186) !important;
+}
+
+.padding-texto{
+  padding-left: 5%;
+}
+.numero-texto-entregados{
+  text-align: center;
+}
+.texto-cliente-light{
+  font-size: 7vw;
+  float:left;
+  color: map-get($colors, 'light') !important;
+}
+.card-cliente{
+  background-color: map-get($colors,'light');
+
+}
+ion-icon{
+  font-size:40px;
+}
+
+.creditos{
+  color: rgb(171, 180, 186) !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+.prueba{
+  background-color: red;
+}
+
+
+.noScroll{
+  overflow-y: hidden;
+}
+
 }

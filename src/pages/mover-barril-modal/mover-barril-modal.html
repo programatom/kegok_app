@@ -1,0 +1,202 @@
+<div class="splashScan" *ngIf="showSplashScan">
+  <div class="spinner1">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
+<div class="splashMensaje" *ngIf="showMessageScan">
+  <div class="fadeIn">
+    <ion-icon name = 'ios-thumbs-up' class= 'icono-scan-ok' *ngIf="mensajeOk"></ion-icon>
+    <ion-icon name = 'ios-thumbs-down' class= 'icono-scan-error'*ngIf="mensajeERROR"></ion-icon>
+    <h3 class='mensajeScanVerde' *ngIf="mensajeOk">{{mensajeScan}}</h3>
+    <h3 class='mensajeScanRojo' *ngIf="mensajeERROR">{{mensajeScan}}</h3>
+  </div>
+</div>
+<div class="splashOpaqueModal" *ngIf="showSplash">
+  <div class="spinner1">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
+<ion-header>
+
+  <ion-navbar color="dark" hideBackButton>
+
+    <ion-title>{{comando}}</ion-title>
+    <ion-buttons left>
+       <button ion-button icon-only (click) = 'dismissModal()'>
+         <ion-icon name="arrow-back" color='light'></ion-icon>
+       </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <!--MODAL FABRICA-->
+
+  <div *ngIf="comando=='Fábrica'">
+
+  <ion-item class = "paddingItem">
+    <ion-input #TextInput placeholder="Identificación" [type]= 'tipoInput' (keyup.enter)="validarBarril('INGRESO')"  [(ngModel)]="idDisplay"></ion-input>
+    <button class = 'boton-icono' clear icon-only item-end ion-button (click) = "validarBarril('INGRESO')" ><ion-icon color = 'light'name="add-circle" class = 'icono-boton'></ion-icon>
+    </button>
+      <button class = 'boton-icono' clear icon-only item-end ion-button (click) = "scanModal('INGRESO')"><ion-icon color = 'light'name="qr-scanner"></ion-icon>
+    </button>
+  </ion-item>
+  <div *ngIf="hayProductos == true">
+    <ion-item no-lines class = "paddingItem fadeIn">
+      <strong>TOTAL:</strong> {{contadorProductos}} barriles
+      <ion-icon name="trash" (click)="eliminarProductoFn()" color="light" item-end>
+      </ion-icon>
+    </ion-item>
+  </div>
+<div *ngFor="let obj of listadoDisplay">
+
+
+  <ion-item color="dark" no-lines text-wrap class= 'bounceInUp'>
+
+    <ion-icon [name]="obj.signo" (click) = "abrirItems(obj)" color = "light" item-end >
+    </ion-icon>
+    {{obj.productos.length}} {{obj.estilo}} ({{obj.capacidad}}lts)
+  </ion-item>
+  <div *ngIf="obj.mostrarItems==true && this.plt.is('ios')">
+    <button *ngFor="let producto of obj.productos" ion-button small round color = "dark" icon-end (click)="eliminarProductoPuntual(obj,producto)" class='fadeIn'>
+      {{producto.id.substring(4)}}
+      <ion-icon name = "remove-circle-outline" color='light'></ion-icon>
+    </button>
+  </div>
+  <div *ngIf="obj.mostrarItems==true && this.plt.is('android')">
+    <button *ngFor="let producto of obj.productos" ion-button small round color = "dark" icon-end (click)="eliminarProductoPuntual(obj,producto)" class='fadeIn'>
+      {{producto.id.substring(4)}}
+      <ion-icon name = "remove-circle" color='light'></ion-icon>
+    </button>
+  </div>
+</div>
+  <div *ngIf="hayProductos == true" text-center>
+  <br>
+  <button ion-button clear class = 'boton' (click) = "confirmar('INGRESO')" color = "azul-ionic">Confirmar</button>
+  </div>
+  </div>
+
+
+
+
+
+  <!--MODAL EMBARRILAR-->
+
+
+  <div *ngIf="comando=='Embarrilar'">
+
+  <button class = 'boton' ion-item (click) = "abrirModalSearch('estilo')" [disabled] = 'listadoDisplay.length != 0' >
+    <ion-label color="light">Estilo <span class = 'span'>{{estiloDisplay}}</span></ion-label>
+  </button>
+
+  <ion-item class = "paddingItem">
+    <ion-label color="light">Lote</ion-label>
+    <ion-input placeholder="" [(ngModel)]="lote" (keyup.enter) = "esconderKeyboard()"></ion-input>
+  </ion-item>
+
+<ion-item class = "paddingItem">
+  <ion-input #TextInput placeholder="Identificación" [type]= 'tipoInput' (keyup.enter)="validarBarril('EMBARRILADO')"  [(ngModel)]="idDisplay"></ion-input>
+  <button class = 'boton-icono' clear icon-only item-end ion-button (click) = "validarBarril('EMBARRILADO')" ><ion-icon color = 'light'name="add-circle" class = 'icono-boton'></ion-icon>
+  </button>
+    <button class = 'boton-icono' clear icon-only item-end ion-button (click) = "scanModal('EMBARRILADO')"><ion-icon color = 'light'name="qr-scanner"></ion-icon>
+  </button>
+</ion-item>
+
+  <div *ngIf="hayProductos == true">
+    <ion-item no-lines class = "paddingItem fadeIn">
+      <strong>TOTAL:</strong> {{contadorProductos}} barriles
+      <ion-icon name="trash" (click)="eliminarProductoFn()" color="light" item-end>
+      </ion-icon>
+    </ion-item>
+  </div>
+  <div *ngFor="let obj of listadoDisplay">
+    <ion-item color="dark" no-lines text-wrap class= 'bounceInUp'>
+      <ion-icon [name]="obj.signo" (click) = "abrirItems(obj)" color = "light" item-end>
+      </ion-icon>
+      {{obj.productos.length}} {{obj.estilo}} ({{obj.capacidad}}lts)
+    </ion-item>
+    <div *ngIf="obj.mostrarItems==true && this.plt.is('ios')">
+      <button *ngFor="let producto of obj.productos" ion-button small round color = "dark" icon-end (click)="eliminarProductoPuntual(obj,producto)" class='fadeIn'>
+        {{producto.id.substring(4)}}
+        <ion-icon name = "remove-circle-outline" color='light'></ion-icon>
+      </button>
+    </div>
+    <div *ngIf="obj.mostrarItems==true && this.plt.is('android')">
+      <button *ngFor="let producto of obj.productos" ion-button small round color = "dark" icon-end (click)="eliminarProductoPuntual(obj,producto)" class='fadeIn'>
+        {{producto.id.substring(4)}}
+        <ion-icon name = "remove-circle" color='light'></ion-icon>
+      </button>
+    </div>
+  </div>
+    <br>
+    <div *ngIf="hayProductos == true" text-center>
+    <button ion-button clear class = 'boton' (click) = "confirmar('EMBARRILADO')">Confirmar</button>
+    </div>
+    </div>
+
+
+    <!--MODAL ENTREGAR-->
+
+      <div *ngIf="comando=='Entregar'">
+      <button class = 'boton' ion-item (click) = "abrirModalSearch('cliente')" [disabled] = 'listadoDisplay.length != 0 || preparacionPedido'>
+        <ion-label color="light">Cliente <span class = 'span'>{{clienteDisplay}}</span></ion-label>
+      </button>
+
+      <ion-item class = "paddingItem">
+        <ion-input #TextInput placeholder="Identificación" [type]= 'tipoInput' (keyup.enter)="validarBarril('ENTREGA')"  [(ngModel)]="idDisplay"></ion-input>
+        <button class = 'boton-icono' clear icon-only item-end ion-button (click) = "validarBarril('ENTREGA')" ><ion-icon color = 'light'name="add-circle" class = 'icono-boton'></ion-icon>
+        </button>
+          <button class = 'boton-icono' clear icon-only item-end ion-button (click) = "scanModal('ENTREGA')"><ion-icon color = 'light'name="qr-scanner"></ion-icon>
+        </button>
+      </ion-item>
+
+      <div *ngIf="hayProductos == true">
+        <ion-item no-lines class = "paddingItem fadeIn">
+          <strong>TOTAL:</strong> {{contadorProductos}} barriles
+          <ion-icon name="trash" (click)="eliminarProductoFn()" color="light" item-end>
+          </ion-icon>
+        </ion-item>
+      </div>
+      <div *ngFor="let obj of listadoDisplay">
+
+
+        <ion-item color="dark" no-lines text-wrap class= 'bounceInUp'>
+          <ion-icon [name]="obj.signo" (click) = "abrirItems(obj)" color = "light" item-end>
+          </ion-icon>
+          {{obj.productos.length}} {{obj.estilo}} ({{obj.capacidad}}lts)
+        </ion-item>
+        <div *ngIf="obj.mostrarItems==true && this.plt.is('ios')">
+          <button *ngFor="let producto of obj.productos" ion-button small round color = "dark" icon-end (click)="eliminarProductoPuntual(obj,producto)" class='fadeIn'>
+            {{producto.id.substring(4)}}
+            <ion-icon name = "remove-circle-outline" color='light'></ion-icon>
+          </button>
+        </div>
+        <div *ngIf="obj.mostrarItems==true && this.plt.is('android')">
+          <button *ngFor="let producto of obj.productos" ion-button small round color = "dark" icon-end (click)="eliminarProductoPuntual(obj,producto)" class='fadeIn'>
+            {{producto.id.substring(4)}}
+            <ion-icon name = "remove-circle" color='light'></ion-icon>
+          </button>
+        </div>
+      </div>
+        <br>
+        <div *ngIf="hayProductos == true" text-center>
+        <button ion-button clear class = 'boton' (click) = "confirmar('ENTREGA')" >Confirmar</button>
+        </div>
+        <br>
+        <div *ngIf="preparacionPedido">
+          <ion-item [color]="obj.coincide" no-lines text-wrap *ngFor="let obj of pedidoDisplay">
+            <ion-icon [name]="obj.signo" (click) = "abrirItems(obj)" color = "light" item-end>
+            </ion-icon>
+            {{obj.cantidad}} {{obj.estilo}} ({{obj.capacidad}}lts)
+          </ion-item>
+        </div>
+        </div>
+</ion-content>

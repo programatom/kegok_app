@@ -1,0 +1,13 @@
+
+<ion-card style="background-color:transparent !important">
+   <ion-card-header style="color:white">
+     STOCK EN CÁMARA
+   </ion-card-header>
+   <ion-card-content style="color:white !important">
+     <canvas #doughnutCanvas width="1000" height="1000" ondblclick="doubleClick()"></canvas>
+   </ion-card-content>
+</ion-card>
+
+<div *ngIf="buscador" text-center style="color:white" (click) = 'irAlSearch()' class="fadeIn">
+  Ver detalle en el listado
+</div>

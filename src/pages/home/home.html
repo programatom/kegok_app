@@ -1,17 +1,87 @@
+<div class="splash" *ngIf="showSplash">
+  <div class="spinner1">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
+
+
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Inicio</ion-title>
+    <ion-buttons left *ngIf="this.plt.is('android')">
+       <button ion-button>
+         <img src="assets/imgs/logo-chico.png" class = 'imagenNav'>
+       </button>
+    </ion-buttons>
+    <ion-buttons left *ngIf="this.plt.is('ios')">
+       <button ion-button>
+         <img src="assets/imgs/logo-chico.png" class = 'imagenNav fadeIn'>
+       </button>
+    </ion-buttons>
+
+   <ion-buttons right>
+      <button ion-button icon-only (click) = 'logout()'>
+        <ion-icon name="md-log-out" color='light' class='icono-logout'></ion-icon>
+      </button>
+   </ion-buttons>
   </ion-navbar>
+  <ion-segment [(ngModel)]="vistaHome" color="dark" class = 'segment-style ios' (ionChange) = 'cambioVista()'>
+  <ion-segment-button value="general">
+    <ion-icon name = 'kegok-general' style = "font-size:6vw"></ion-icon>
+  </ion-segment-button>
+  <ion-segment-button value="stock">
+    <ion-icon name = 'kegok-deposito' style = "font-size:6vw"></ion-icon>
+  </ion-segment-button>
+  <ion-segment-button value="entregado">
+    <ion-icon name = 'kegok-entregar' style = "font-size:7.5vw"></ion-icon>
+  </ion-segment-button>
+  <ion-segment-button value="prodYEntrega">
+    <ion-icon name = 'kegok-factory' style = "font-size:6.5vw"></ion-icon>
+  </ion-segment-button>
+  <ion-segment-button value="barrilesFuera">
+    <ion-icon name = 'kegok-barril-afuera' style = "font-size:6.5vw"></ion-icon>
+  </ion-segment-button>
+</ion-segment>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content #contenido>
+  <div class="splash" *ngIf="showSplashContent">
+    <div class="spinner1">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
+  <ion-refresher (ionRefresh)="doRefresh($event)" [enabled] = "refreshHabilitado" (ionStart) = "pull($event)"
+                color = 'light' >
+     <ion-refresher-content></ion-refresher-content>
+   </ion-refresher>
+<div *ngIf="vistaHome == 'general'">
+  <div *ngIf="totalizadorCargado">
+    <totalizador [data] = "dataTotalizador"></totalizador>
+  </div>
+  <div *ngIf="totalizadorCargado == false">
+    <totalizador [data] = "dataTotalizador"></totalizador>
+  </div>
+</div>
+<div *ngIf="vistaHome == 'stock'" #vistaPie>
+  <div *ngIf="datosPieCargados">
+    <stock-pie [pieDataLabels] = "pieDataLabels" [pieDataCantidades] = "pieDataCantidades" [coloresPie] = "coloresPie"></stock-pie>
+  </div>
+</div>
+<div *ngIf="vistaHome == 'prodYEntrega'">
+  <div *ngIf="datosLineCargados">
+    <line-chart-entrega-y-produccion [datosLineChart] = "datosLineChart"></line-chart-entrega-y-produccion>
+  </div>
+</div>
+<div *ngIf="vistaHome == 'entregado'">
+  <div *ngIf="arrayEntregadoAClientesCargado">
+    <entregados [arrayEntregadoAClientes] = "arrayEntregadoAClientes"></entregados>
+  </div>
+</div>
+<div *ngIf="vistaHome == 'barrilesFuera'">
+  <div *ngIf="datosBarrilesCargados">
+    <barriles-afuera [datosBarrilesAfuera] = "datosBarrilesAfuera"></barriles-afuera>
+  </div>
+</div>
 </ion-content>

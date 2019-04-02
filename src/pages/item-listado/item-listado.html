@@ -1,0 +1,194 @@
+<div class="splashOpaqueModal" *ngIf="showSplash">
+  <div class="spinner1">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
+<ion-header>
+
+  <ion-navbar color="dark" hideBackButton>
+    <ion-title text-center>{{titulo}}</ion-title>
+    <ion-title></ion-title>
+    <ion-buttons left>
+       <button ion-button icon-only (click) = 'dismissModal()'>
+         <ion-icon name="arrow-back" color='light'></ion-icon>
+       </button>
+   </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content #content>
+
+<ion-list *ngIf="tipo=='producto'">
+
+  <ion-item class = 'itemTransparent' no-lines *ngIf="existeCapacidad">
+    <strong>
+      Capacidad (lts):
+    </strong>
+    {{capacidadBarril}}
+  </ion-item>
+
+  <ion-item class = 'itemTransparent' no-lines *ngIf="existeEstilo">
+    <strong>
+      Estilo:
+    </strong>
+    {{estiloBarril}}
+  </ion-item>
+  <ion-item class = 'itemTransparent' no-lines>
+    <strong>
+      Estado:
+    </strong>
+    <span *ngIf="estadoBarril == 'ENTREGADO'" class = 'entregadoBarril'>
+      {{estadoBarril}}
+</span>
+<span *ngIf="estadoBarril == 'FABRICA'" class = 'fabricaBarril'>
+  {{estadoBarril}}
+</span>
+<span *ngIf="estadoBarril == 'STOCK'" class = 'stockBarril'>
+  {{estadoBarril}}
+</span>
+  </ion-item>
+  <ion-item class = 'itemTransparent' no-lines *ngIf="existeCliente">
+    <strong>
+      Cliente:
+    </strong>
+    {{clienteEstatico}}
+  </ion-item>
+
+</ion-list>
+
+<!-- PEDIDO -->
+
+<div *ngIf="tipo == 'tipoPedido' && estadoEstatico =='ENTREGADO'">
+    <ion-item class = 'itemTransparent' no-lines text-wrap>
+      <strong>
+        Cliente:
+      </strong>
+      {{clienteEstatico}}
+    </ion-item>
+
+    <ion-item class = 'itemTransparent' no-lines text-wrap>
+      <strong>
+        Fecha de entrega:
+      </strong>
+      {{fechaEstatico}}
+    </ion-item>
+    <ion-item class = 'itemTransparent' no-lines text-wrap>
+      <strong>Estado: </strong> <span class='estadoEstaticoEntregado'>{{estadoEstatico}}</span>
+
+    </ion-item>
+
+    <br>
+
+      <div *ngFor="let obj of itemsDisplay" class='padding-div'>
+        <ion-item color="dark" no-lines text-wrap>
+          {{obj.cantidad}} {{obj.estilo}} ({{obj.capacidad}}lts)
+        </ion-item>
+      </div>
+</div>
+
+<div *ngIf="tipo == 'tipoPedido' && estadoEstatico =='CANCELADO'">
+    <ion-item class = 'itemTransparent' no-lines text-wrap>
+      <strong>
+        Cliente:
+      </strong>
+      {{clienteEstatico}}
+    </ion-item>
+    <ion-item class = 'itemTransparent' no-lines text-wrap>
+      <strong>
+        Fecha de entrega:
+      </strong>
+      {{fechaEstatico}}
+    </ion-item>
+    <ion-item class = 'itemTransparent' no-lines>
+      <strong>
+        Estado:
+      </strong>
+      <span class='estadoEstaticoCancelado'>{{estadoEstatico}}</span>
+    </ion-item>
+
+    <br>
+
+      <div *ngFor="let obj of itemsDisplay" class='padding-div'>
+        <ion-item color="dark" no-lines text-wrap>
+          {{obj.cantidad}} {{obj.estilo}} ({{obj.capacidad}}lts)
+        </ion-item>
+      </div>
+
+
+
+</div>
+
+<div *ngIf="(tipo == 'tipoPedido' || tipo == 'nuevoPedido') && estadoEstatico =='PENDIENTE'">
+
+  <ion-item class="itemTransparent" no-lines>
+    <ion-label>Fecha</ion-label>
+    <ion-datetime displayFormat="DD MMM, YYYY HH:mm" [(ngModel)]="fechaSelector"
+      min="2018" max="2025"
+      cancelText = 'Cancelar'
+      doneText = 'Confirmar'
+    ></ion-datetime>
+    <ion-icon name="md-calendar" item-end></ion-icon>
+  </ion-item>
+
+  <button no-lines class = 'boton' ion-item (click)="abrirModalSearch('cliente')">
+    <ion-label color="light">Cliente <span class = 'span'>{{clienteDisplay}}</span></ion-label>
+  </button>
+  <ion-item class="itemTransparent paddinglinea" text-wrap *ngIf="this.plt.is('ios')">
+    <ion-textarea placeholder="Comentarios" [(ngModel)]="comentarios"></ion-textarea>
+  </ion-item>
+  <ion-item class="itemTransparent paddinglinea padding-izquierda" text-wrap *ngIf="this.plt.is('android')">
+    <ion-textarea placeholder="Comentarios" class = 'text-area' [(ngModel)]="comentarios"></ion-textarea>
+  </ion-item>
+
+  <ion-item class="itemTransparent" no-lines>
+    <ion-label color="light">Cantidad</ion-label>
+    <ion-input placeholder="" type = "number" [(ngModel)]="cantidadDisplay" (keyup.enter)="esconderKeyboard()"></ion-input>
+  </ion-item>
+  <button no-lines class = 'boton' ion-item (click) = "abrirModalSearch('estilo')">
+    <ion-label color="light">Estilo <span class = 'span'>{{estiloDisplay}}</span></ion-label>
+  </button>
+  <button no-lines class = 'boton' ion-item (click) = "abrirModalSearch('capacidad')">
+    <ion-label color="light">Capacidad <span class = 'span'>{{capacidadDisplay}}</span></ion-label>
+  </button>
+
+
+    <div class="boton-agregar" (click) = "agregarBarriles()">
+      AGREGAR
+    </div>
+
+<br>
+
+  <div *ngFor="let obj of itemsDisplay" class='padding-div'>
+    <ion-item no-lines text-wrap color ='dark' class = 'fadeIn'>
+      <ion-icon name="close-circle" (click) = "sacarUnItem(obj)" color = "light" item-end>
+      </ion-icon>
+      {{obj.cantidad}} {{obj.estilo}} ({{obj.capacidad}}lts)
+    </ion-item>
+  </div>
+
+<br>
+<ion-row *ngIf="itemsDisplay != 0" class = 'row'>
+  <ion-col>
+    <button icon-only ion-button full clear (click) = "cancelar()" class = 'fadeIn boton cancelar'>
+      Cancelar
+    </button>
+  </ion-col>
+  <ion-col>
+    <button icon-only ion-button full clear (click) = "guardar('false')" class = 'fadeIn boton guardar'>
+      Guardar
+    </button>
+  </ion-col>
+  <ion-col>
+    <button icon-only ion-button full clear (click) = "prepararPedido()" class = 'fadeIn boton entregar'>
+      Entregar
+    </button>
+  </ion-col>
+</ion-row>
+
+
+</div>
+
+</ion-content>

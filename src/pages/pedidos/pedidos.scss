@@ -1,0 +1,88 @@
+page-pedidos {
+
+  .spinner{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+
+  }
+
+  .nota{
+    margin-left: 5%;
+    color: map-get($colors, 'light') !important;
+  }
+
+  ion-content{
+    background-color: #2b3643 !important;
+  }
+
+  .splash{
+    position:absolute;
+    width:100%;
+    height: 100%;
+    z-index: 999;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2b3643 !important;
+    margin: -3.8vw;
+  }
+  .spinner1 {
+
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+    -webkit-animation: sk-rotate 2.0s infinite linear;
+    animation: sk-rotate 2.0s infinite linear;
+  }
+
+  .dot1, .dot2 {
+    width: 60%;
+    height: 60%;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    background-color: map-get($colors,'azul-ok');
+    border-radius: 100%;
+
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+  }
+
+  .dot2 {
+    top: auto;
+    bottom: 0;
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+
+  .containerView{
+    position:absolute;
+    width:100%;
+    height: 100%;
+    z-index: 999;
+    display:flex;
+    background-color: #2b3643 !important;
+    padding: 25vw;
+ }
+
+
+  .icono-search{
+    font-size: 13vw;
+  }
+
+  .centeredItemResults{
+
+    width: 40vw;
+    height: 14vw;
+    position: relative;
+    text-align: center;
+    color: map-get($colors,'light');
+
+
+  }
+
+
+
+}

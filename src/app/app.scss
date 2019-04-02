@@ -1,16 +1,292 @@
-// http://ionicframework.com/docs/theming/
+.colorChart1{color:rgb(255, 99, 132) !important}
+.colorChart2{color:rgb(255, 159, 64) !important}
+.colorChart3{color:rgb(255, 205, 86) !important}
+.colorChart4{color:rgb(75, 192, 192) !important}
+.colorChart5{color:rgb(54, 162, 235) !important}
+.colorChart6{color:rgb(153, 102, 255) !important}
+.colorChart7{color:rgb(255, 99, 132) !important}
+.colorChart8{color:rgb(0, 0, 0) !important}
+.colorChart9{color:rgb(23, 182, 108) !important}
+.colorChart10{color:rgb(255, 0, 127) !important}
+.colorChart11{color:rgb(102, 255, 255) !important}
+.colorChart12{color:rgb(213, 240, 235) !important}
+.colorChart13{color:rgb(234, 35, 240) !important}
+.colorChart14{color:rgb(79, 144, 15) !important}
+.numeroGrande{font-size:6vw !important}
+.texto5vw{font-size:5vw !important;color:rgb(171, 180, 186) !important}
+.texto5vwClean{font-size:6vw !important;}
+.color-light{color: map-get($colors,'light') !important}
+.background-transparent{background-color: transparent !important}
+.background-fondo-custom{ background-color: map-get($colors,'azul-ok') !important}
+
+.color-white{
+  color:white;
+}
+
+.imagenNav{
+  height: 7.5vw !important;
+  width: auto;
+}
+.icono-logout{
+  font-size: 7.5vw !important;
+}
+
+ion-toast.success .toast-wrapper {
+  background-color: map-get($colors,'verde');
+  color:white;
+  border-radius: 1vw;
+  font-size: 6vw;
+}
+
+ion-toast.error .toast-wrapper {
+  background-color: map-get($colors,'CANCELADO');
+  color:white;
+  border-radius: 1vw;
+}
+ion-toast.error .toast-message{
+  font-size: 4vw!important;
+}
+ion-toast.success .toast-message{
+  font-size: 4vw!important;
+
+}
 
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+.splashOpaque{
+  margin: -4vw;
+  margin-top: -4.5vw;
+  margin-bottom: -6vw;
+  position:absolute;
+  width:100%;
+  height: 100%;
+  z-index: 999;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.7) !important;
+}
+
+.splashOpaqueModal{
+
+  position:absolute;
+  width:100%;
+  height: 100%;
+  z-index: 998;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.7) !important;
+}
+.splashScan{
+
+  position:absolute;
+  width:100%;
+  height: 100%;
+  z-index: 999;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2b3643 !important;
+}
+
+.splash{
+  position:absolute;
+  width:100%;
+  height: 100%;
+  z-index: 999;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2b3643 !important;
+}
+.spinner1 {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear;
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: map-get($colors,'azul-ok');
+  border-radius: 100%;
+
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+ion-icon {
+    &[class*="kegok-"] {
+        // Instead of using the font-based icons
+        // We're applying SVG masks
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 1em;
+        height: 1em;
+    }
+    // custom icons
+    &[class*="kegok-factory"] {
+        mask-image: url(../assets/imgs/factory.svg);
+    }
+    &[class*="kegok-deposito"] {
+        mask-image: url(../assets/imgs/warehouse.svg);
+    }
+    &[class*="kegok-shopping-cart"] {
+        mask-image: url(../assets/imgs/shopping-cart.svg);
+    }
+    &[class*="kegok-cask"] {
+        mask-image: url(../assets/imgs/cask.svg);
+    }
+    &[class*="kegok-barrel"] {
+        mask-image: url(../assets/imgs/barrel.svg);
+    }
+    &[class*="kegok-barrel-embarrilar"] {
+        mask-image: url(../assets/imgs/barrel-embarrilar.svg);
+    }
+    &[class*="kegok-smile"] {
+        mask-image: url(../assets/imgs/smile.svg);
+    }
+    &[class*="kegok-shipped"] {
+        mask-image: url(../assets/imgs/shipped.svg);
+    }
+    &[class*="kegok-entregar"] {
+        mask-image: url(../assets/imgs/shippedIn.svg);
+    }
+    &[class*="kegok-icono"] {
+        mask-image: url(../assets/imgs/icono-kegok.svg);
+    }
+    &[class*="kegok-flash"] {
+        mask-image: url(../assets/imgs/flash.svg);
+    }
+    &[class*="kegok-speaker"] {
+        mask-image: url(../assets/imgs/hand-speaker.svg);
+    }
+    &[class*="kegok-barril-afuera"] {
+        mask-image: url(../assets/imgs/barril-afuera.svg);
+    }
+    &[class*="kegok-general"] {
+        mask-image: url(../assets/imgs/general.svg);
+    }
+    &[class*="kegok-checkbox"] {
+        mask-image: url(../assets/imgs/check-box.svg);
+    }
+
+}
+
+ion-content{
+  background-color: map-get($colors,'fondo') !important;
+}
+
+ion-navbar{
+  color: map-get($colors, 'dark');
+}
+ion-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.float-right{
+  float:right;
+}
+.icono-cuadrado{
+  font-size: 6vw;
+}
+ion-item{
+  &[class*="itemTransparent"]{
+  background-color: transparent !important;
+  color: map-get($colors, 'light') !important;
+}
+&[class*="itemTransparentTextoOscuro"]{
+background-color: transparent !important;
+color: map-get($colors, 'fondo') !important;
+}
+}
+.color-fondo{
+  color: map-get($colors, 'fondo') !important;
+}
+
+
+button{
+&[class*="boton"]{
+  background-color: transparent !important;
+  color: map-get($colors, 'light') !important;
+}
+}
+
+.containerView{
+  position:absolute;
+  width:100%;
+  height: 100%;
+  z-index: 999;
+  display:flex;
+  padding: 25vw;
+  background-color: #2b3643 !important;
+}
+
+
+.centeredItemResults{
+
+  width: 40vw;
+  height: 14vw;
+  position: relative;
+  text-align: center;
+  color: map-get($colors,'light');
+
+}
+.icono-search{
+  font-size: 13vw;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}

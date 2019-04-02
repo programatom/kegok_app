@@ -1,0 +1,27 @@
+<ion-card  *ngFor="let array of arrayEntregadoAClientes" (click) = 'irAlSearch(array.CLIENTE)' style="background-color:transparent !important">
+  <ion-grid>
+    <ion-row>
+      <ion-col class = 'col-cliente'>
+        <div class= 'numeroGrande colorChart5'
+             >
+          <strong style ="margin-left:3.7vw;">
+            {{array.CLIENTE}}
+          </strong>
+          <ion-icon name='search' class = 'texto5vwClean posicion-days-out colorChart5' ></ion-icon>
+        </div>
+        <div class="linea-divisoria">
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class = "numero-texto-entregados" *ngFor="let estilo of array.styles" col-4>
+        <div class= 'numeroGrande color-white'>
+          {{estilo.capacidad}} <small>lts</small>
+        </div>
+        <div class= 'numeroGrande color-white'>
+          <small><strong>{{estilo.estilo}}</strong></small>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

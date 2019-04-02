@@ -1,0 +1,69 @@
+<div class="splash" *ngIf="showSplash">
+  <div class="spinner1">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Mover barril</ion-title>
+    <ion-buttons left *ngIf="this.plt.is('android')">
+       <button ion-button>
+         <img src="assets/imgs/logo-chico.png" class = 'imagenNav'>
+       </button>
+    </ion-buttons>
+    <ion-buttons left *ngIf="this.plt.is('ios')">
+       <button ion-button>
+         <img src="assets/imgs/logo-chico.png" class = 'imagenNav fadeIn'>
+       </button>
+    </ion-buttons>
+   <ion-buttons right>
+      <button ion-button icon-only (click) = 'logout()'>
+        <ion-icon name="md-log-out" color='light' class='icono-logout'></ion-icon>
+      </button>
+   </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+
+  <div class="splashOpaque" *ngIf="showSplash">
+    <div class="spinner1">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
+
+  <div class = 'botones'>
+    <div class="btn1" (click) = "irModal('Fábrica')">
+      <span><ion-icon name = 'kegok-shipped'></ion-icon></span>
+      <div class='texto1'>
+        Ingresar a fábrica
+      </div>
+    </div>
+    <br>
+    <div class="btn2" (click) = "irModal('Embarrilar')">
+      <ion-icon name = 'kegok-barrel-embarrilar'></ion-icon>
+      <div class='texto'>
+      Embarrilar
+    </div>
+
+    </div>
+    <br>
+    <div class="btn3" (click) = "irModal('Entregar')">
+
+      <ion-icon name = 'kegok-entregar'></ion-icon>
+      <div class='texto2'>
+        Entregar
+      </div>
+    </div>
+  </div>
+<br>
+<br>
+
+
+
+
+</ion-content>

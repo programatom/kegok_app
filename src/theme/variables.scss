@@ -23,7 +23,13 @@ $app-direction: ltr;
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
 
-
+$tabs-ios-tab-icon-color-active: #3F8FCC !important;
+$tabs-md-tab-icon-color-active: #3F8FCC !important;
+$refresher-icon-color: #f4f4f4 !important;
+$text-input-md-highlight-color-valid: rgb(81, 143, 199);
+$refresher-border-color: transparent;
+$item-md-detail-push-show: true;
+$text-input-md-margin-start: 0px;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -34,11 +40,24 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    rgb(56, 65 ,79),
+  secondary:  rgb(45, 54 ,66),
+  azul-ok:    rgb(81, 143, 199),
+  azul-ionic: #488aff,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  ENTREGADO:  rgb(98, 196, 209),
+  PENDIENTE:  rgb(235, 196, 69),
+  CANCELADO:  rgb(222, 115, 120),
+  verde:     #77dd77,
+  STOCKbarril: rgb(235, 196, 69),
+  ENTREGADObarril: #77dd77,
+  FABRICAbarril: #f53d3d,
+  fondo: #2b3643,
+  warning: #F1C40F,
+  dangerCustom: #ed6b75
+
 );
 
 

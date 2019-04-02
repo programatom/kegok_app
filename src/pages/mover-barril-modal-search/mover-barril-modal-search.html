@@ -1,0 +1,66 @@
+
+<ion-header *ngIf="tipo!='capacidad'">
+
+  <ion-navbar color="dark">
+    <ion-searchbar
+      [(ngModel)]="input"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="search($event)"
+      placeholder='Buscar'>
+    </ion-searchbar>
+    <ion-buttons left>
+           <button ion-button icon-only (click)="dismissModal()">
+               <ion-icon name="arrow-back"></ion-icon>
+           </button>
+       </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-header *ngIf="tipo == 'capacidad'">
+  <ion-navbar color="dark">
+    <ion-title>Capacidad</ion-title>
+    <ion-buttons left>
+           <button ion-button icon-only (click)="dismissModal()">
+               <ion-icon name="arrow-back"></ion-icon>
+           </button>
+       </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="containerView" *ngIf="noHayResultados">
+    <div class="centeredItemResults">
+      <ion-icon name = 'search' class= 'icono-search'></ion-icon>
+        <p>No se encontraron resultados...</p>
+    </div>
+  </div>
+<div *ngIf="tipo!='capacidad'">
+
+<div *ngIf="existeSearch == false">
+  <ion-list>
+
+     <button class= 'boton' no-lines *ngFor="let item of array" ion-item (click) = 'elegir(item.NAME)'>
+        {{item.NAME}}
+     </button>
+   </ion-list>
+</div>
+<div *ngIf="existeSearch == true">
+  <ion-list>
+
+     <button class= 'boton' no-lines *ngFor="let item of arrayResultados" ion-item (click) = 'elegir(item.NAME)'>
+        {{item.NAME}}
+     </button>
+   </ion-list>
+</div>
+</div>
+<div *ngIf="tipo=='capacidad'">
+  <ion-list>
+       <button class= 'boton' *ngFor="let item of array" no-lines ion-item (click) = 'elegir(item.VALUE_ENG)'>
+          {{item.VALUE_ENG}} lts
+       </button>
+     </ion-list>
+</div>
+
+</ion-content>
